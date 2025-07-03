@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+    # PostgreSQL Database Service
+    db:
+      image: postgres:13 # Use PostgreSQL version 13
+      restart: always # Always restart the container if it stops
+      environment:
+        POSTGRES_USER: user # Database username
+        POSTGRES_PASSWORD: password # Database password
+        POSTGRES_DB: user_db # Database name
+      ports:
+        - "5432:5432" # Map host port 5432 to container port 5432
+      volumes:
+        - pg_data:/var/lib/postgresql/data # Persistent volume for database data
+    #
+    # Define named volumes for persistent data
+volumes:
+  pg_data:
